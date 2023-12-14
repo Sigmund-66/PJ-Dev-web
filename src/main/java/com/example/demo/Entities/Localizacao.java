@@ -10,7 +10,7 @@ public class Localizacao {
     private double longitude;
 
     @ManyToOne
-    @JoinColumn(name = "veiculo_id")
+    @JoinColumn(name = "veiculo_id", nullable = false)
     private Veiculo veiculo;
 
     // Construtores, getters e setters
