@@ -25,4 +25,13 @@ public class LocalizacaoService {
     public void deleteLocalizacao(Long id) {
         localizacaoRepository.deleteById(id);
     }
+
+    public Localizacao updateLocalizacao(Long id, Localizacao newLocalizacao) {
+        return localizacaoRepository.findById(id).map(existingLocalizacao -> {
+            existingLocalizacao.setLatitude(newLocalizacao.getLatitude());
+            existingLocalizacao.setLongitude(newLocalizacao.getLongitude());
+            return localizacaoRepository.save(existingLocalizacao);
+        }).orElse(null);
+    }
 }
+

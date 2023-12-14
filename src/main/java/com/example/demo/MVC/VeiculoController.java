@@ -1,4 +1,5 @@
 package com.example.demo.MVC;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,19 @@ public class VeiculoController {
     public ResponseEntity<Veiculo> saveVeiculo(@RequestBody Veiculo veiculo) {
         Veiculo savedVeiculo = veiculoService.saveVeiculo(veiculo);
         return new ResponseEntity<>(savedVeiculo, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Veiculo> updateVeiculo(@PathVariable Long id, @RequestBody Veiculo veiculo) {
+        Veiculo updatedVeiculo = veiculoService.updateVeiculo(id, veiculo);
+        
+        if (updatedVeiculo != null) {
+            // Veículo atualizado com sucesso
+            return new ResponseEntity<>(updatedVeiculo, HttpStatus.OK);
+        } else {
+            // Veículo não encontrado
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{id}")

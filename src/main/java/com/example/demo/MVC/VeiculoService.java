@@ -25,4 +25,23 @@ public class VeiculoService {
     public void deleteVeiculo(Long id) {
         veiculoRepository.deleteById(id);
     }
+
+    public Veiculo updateVeiculo(Long id, Veiculo veiculo) {
+        // Verificar se o veículo com o ID fornecido existe
+        Optional<Veiculo> existingVeiculoOptional = veiculoRepository.findById(id);
+        
+        if (existingVeiculoOptional.isPresent()) {
+            // Veículo encontrado, atualizar os dados
+            Veiculo existingVeiculo = existingVeiculoOptional.get();
+            existingVeiculo.setPlaca(veiculo.getPlaca());
+            existingVeiculo.setModelo(veiculo.getModelo());
+            existingVeiculo.setAnoFabricacao(veiculo.getAnoFabricacao());
+
+            // Salvar e retornar o veículo atualizado
+            return veiculoRepository.save(existingVeiculo);
+        } else {
+            
+            return null;
+        }
+    }
 }
