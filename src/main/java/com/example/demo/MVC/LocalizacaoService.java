@@ -1,4 +1,4 @@
-package com.example.demo.Repositories;
+package com.example.demo.MVC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
